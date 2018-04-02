@@ -16,7 +16,7 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var getMaxElement = function (arr) {
-  if (arr.length === 0){
+  if (arr.length === 0) {
     return 'В функцию необходимо передать не пустой массив!';
   }
 
@@ -40,7 +40,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура! Вы победили!', CLOUD_X + GAP, CLOUD_Y + GAP + TEXT_HEIGHT);
-  ctx.fillText('Список результатов:', CLOUD_X + GAP, CLOUD_Y + GAP + TEXT_HEIGHT*2);
+  ctx.fillText('Список результатов:', CLOUD_X + GAP, CLOUD_Y + GAP + TEXT_HEIGHT * 2);
 
   var maxTime = getMaxElement(times);
 
@@ -55,5 +55,5 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT);
     ctx.fillText(Math.floor(times[i]), CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - GAP * 3 - (barHeight * times[i]) / maxTime);
-  };
+  }
 };
