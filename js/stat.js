@@ -41,9 +41,7 @@ var renderGistogramm = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    ctx.fillStyle = names[i] === 'Вы'
-      ? 'rgba(255, 0, 0, 1)'
-      : 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)';
+    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)';
 
     ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - GAP * 2 - (barHeight * times[i]) / maxTime, BAR_WIDTH, (barHeight * times[i]) / maxTime);
     ctx.fillStyle = '#000';
