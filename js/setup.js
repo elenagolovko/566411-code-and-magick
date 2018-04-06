@@ -40,7 +40,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var createFragment = function (wizards) {
+var createWizardsFragment = function () {
   var fragment = document.createDocumentFragment();
 
   for (var i = 0; i < wizards.length; i++) {
@@ -52,11 +52,11 @@ var createFragment = function (wizards) {
 var showDialog = function () {
   userDialog.classList.remove('hidden');
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
-}
+};
 
 var initWizards = function () {
   generateWizardsData(WIZARDS_LIST_SIZE);
-  createFragment(wizards);
+  createWizardsFragment();
   showDialog();
 };
 
