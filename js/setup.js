@@ -16,18 +16,18 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var findRandom = function (arr) {
-  var randomNumber =  Math.floor(Math.random() * arr.length);
+  var randomNumber = Math.floor(Math.random() * arr.length);
   return randomNumber;
 };
 
 var wizardsData = function (wizardsNumber) {
   for (var i = 0; i < wizardsNumber; i++) {
     wizards.push(
-      {
-        name: WIZARD_NAMES[findRandom(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[findRandom(WIZARD_SURNAMES)],
-        coatColor: COAT_COLORS[findRandom(COAT_COLORS)],
-        eyesColor: EYES_COLORS[findRandom(EYES_COLORS)]
-      }
+    {
+      name: WIZARD_NAMES[findRandom(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[findRandom(WIZARD_SURNAMES)],
+      coatColor: COAT_COLORS[findRandom(COAT_COLORS)],
+      eyesColor: EYES_COLORS[findRandom(EYES_COLORS)]
+    }
     );
   }
   return wizards;
