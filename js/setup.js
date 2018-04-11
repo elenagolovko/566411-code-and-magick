@@ -19,9 +19,12 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
+var wizardNameInput = setup.querySelector('.setup-user-name');
 var wizardEyesInput = setup.querySelector('[name="eyes-color"]');
 var fireball = setup.querySelector('.setup-fireball-wrap');
 var fireballInput = setup.querySelector('[name="fireball-color"]');
+var wizardCoat = setup.querySelector('.wizard-coat');
+var wizardCoatInput = setup.querySelector('[name="coat-color"]');
 
 var findRandom = function (arr) {
   return Math.floor(Math.random() * arr.length);
@@ -63,6 +66,12 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
+wizardNameInput.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    evt.preventDefault();
+  }
+});
+
 wizardEyes.addEventListener('click', function () {
   wizardEyesInput.value = EYES_COLORS[findRandom(EYES_COLORS)];
   wizardEyes.style = 'fill:' + wizardEyesInput.value;
@@ -71,6 +80,12 @@ wizardEyes.addEventListener('click', function () {
 fireball.addEventListener('click', function () {
   fireballInput.value = FIREBALL_COLORS[findRandom(FIREBALL_COLORS)];
   fireball.style = 'background-color:' + fireballInput.value;
+});
+
+wizardCoat.addEventListener('click', function () {
+  wizardCoatInput.value =  COAT_COLORS[findRandom(COAT_COLORS)];
+  console.log( wizardCoatInput.value);
+  wizardCoat.style = 'fill:' + wizardCoatInput.value;
 });
 
 var generateWizardsData = function (wizardsNumber) {
@@ -105,15 +120,9 @@ var createWizardsFragment = function () {
   similarListElement.appendChild(fragment);
 };
 
-var showDialog = function () {
-  userDialog.classList.remove('hidden');
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
-};
-
 var initWizards = function () {
   generateWizardsData(WIZARDS_LIST_SIZE);
   createWizardsFragment();
-  //showDialog();
 };
 
 initWizards();
