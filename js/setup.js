@@ -83,8 +83,7 @@ fireball.addEventListener('click', function () {
 });
 
 wizardCoat.addEventListener('click', function () {
-  wizardCoatInput.value =  COAT_COLORS[findRandom(COAT_COLORS)];
-  console.log( wizardCoatInput.value);
+  wizardCoatInput.value = COAT_COLORS[findRandom(COAT_COLORS)];
   wizardCoat.style = 'fill:' + wizardCoatInput.value;
 });
 
