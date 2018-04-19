@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
@@ -11,7 +12,6 @@
       top: setup.offsetTop,
       left: setup.offsetLeft
     };
-    initPositionReset();
     setupOpen.removeEventListener('click', setDefaultCoords);
   };
 
@@ -26,12 +26,12 @@
 
   var openPopup = function () {
     setup.classList.remove('hidden');
-    initPositionReset();
     document.addEventListener('keydown', onPopupEscPress);
   };
 
   setupOpen.addEventListener('click', openPopup);
   setupOpen.addEventListener('click', setDefaultCoords);
+  setupOpen.addEventListener('click', initPositionReset);
 
   setupOpen.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, openPopup);
