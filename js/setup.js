@@ -1,5 +1,6 @@
 'use strict';
 (function () {
+  var ENTER_KEYCODE = 13;
   var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -14,8 +15,6 @@
       .content
       .querySelector('.setup-similar-item');
   var setup = document.querySelector('.setup');
-  var setupOpen = document.querySelector('.setup-open');
-  var setupClose = setup.querySelector('.setup-close');
   var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
   var wizardNameInput = setup.querySelector('.setup-user-name');
   var wizardEyesInput = setup.querySelector('[name="eyes-color"]');
