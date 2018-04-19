@@ -6,35 +6,34 @@
   var setupClose = setup.querySelector('.setup-close');
   var dialogHandle = setup.querySelector('.setup-user-pic');
   var wizardNameInput = setup.querySelector('.setup-user-name');
-
-  var setDefaultCoords = function () {
-    window.defaultSetupPosition = {
-      top: setup.offsetTop,
-      left: setup.offsetLeft
-    };
-    setupOpen.removeEventListener('click', setDefaultCoords);
+  var defaultSetupPosition = {
+    top: setup.offsetTop,
+    left: setup.offsetLeft
   };
 
   var initPositionReset = function () {
+    if (defaultSetupPosition.top === 0 && defaultSetupPosition.left === 0) {
+      defaultSetupPosition.top = setup.offsetTop;
+      defaultSetupPosition.left = setup.offsetLeft;
+    }
     setup.style.top = defaultSetupPosition.top + 'px';
     setup.style.left = defaultSetupPosition.left + 'px';
   };
 
   var onPopupEscPress = function (evt) {
-    window.util.isEscEvent(evt, closePopup, wizardNameInput);
+    window.util.doActionIfEscPressed(evt, closePopup, wizardNameInput);
   };
 
   var openPopup = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
+    initPositionReset();
   };
 
   setupOpen.addEventListener('click', openPopup);
-  setupOpen.addEventListener('click', setDefaultCoords);
-  setupOpen.addEventListener('click', initPositionReset);
 
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.doActionIfEnterPressed(evt, openPopup);
   });
 
   setupClose.addEventListener('click', function () {
@@ -42,7 +41,7 @@
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.doActionIfEnterPressed(evt, closePopup);
   });
 
   var closePopup = function () {
@@ -51,6 +50,8 @@
   };
 
   dialogHandle.addEventListener('mousedown', function (evt) {
+    // evt.preventDefault();
+
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
