@@ -1,6 +1,6 @@
 'use strict';
-
-var ESC_KEYCODE = 27;
+(function () {
+  var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -30,41 +30,41 @@ var findRandom = function (arr) {
   return Math.floor(Math.random() * arr.length);
 };
 
-var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && evt.target !== wizardNameInput) {
-    closePopup();
+//Работа с артефактами
+var shopElement = document.querySelector('.setup-artifacts-shop');
+var draggedItem = null;
+var artifactsElement = document.querySelector('.setup-artifacts');
+
+shopElement.addEventListener('dragstart', function (evt) {
+  if (evt.target.tagName.toLowerCase() === 'img') {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
   }
-};
-
-var openPopup = function () {
-  setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
-};
-
-var closePopup = function () {
-  setup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
-};
-
-setupOpen.addEventListener('click', function () {
-  openPopup();
+  artifactsElement.style = 'outline: 2px dashed red';
 });
 
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
+artifactsElement.addEventListener('dragover', function (evt) {
+  evt.preventDefault();
+  return false;
 });
 
-setupClose.addEventListener('click', function () {
-  closePopup();
+artifactsElement.addEventListener('drop', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.target.appendChild(draggedItem);
+  evt.preventDefault();
 });
 
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
+artifactsElement.addEventListener('dragenter', function (evt) {
+  evt.target.style.backgroundColor = 'yellow';
+  evt.preventDefault();
 });
+
+artifactsElement.addEventListener('dragleave', function (evt) {
+  evt.target.style.backgroundColor = '';
+  evt.preventDefault();
+  artifactsElement.style = 'outline: none';
+});
+//Конец работы с артефактами
 
 wizardNameInput.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
@@ -125,3 +125,5 @@ var initWizards = function () {
 };
 
 initWizards();
+
+})();
