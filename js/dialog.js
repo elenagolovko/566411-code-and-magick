@@ -49,6 +49,7 @@
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
+  dialogHandle.setAttribute('style', 'z-index: 1');
   dialogHandle.addEventListener('mousedown', function (evt) {
     // evt.preventDefault();
 
