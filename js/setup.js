@@ -34,10 +34,14 @@
 
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
-      draggedItem = evt.target;
-      evt.dataTransfer.setData('text/plain', evt.target.alt);
+      draggedItem = evt.target.cloneNode(true);
     }
     artifactsElement.style = 'outline: 2px dashed red';
+  });
+
+  artifactsElement.addEventListener('dragstart', function (evt) {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
   });
 
   artifactsElement.addEventListener('dragover', function (evt) {
@@ -48,6 +52,9 @@
   artifactsElement.addEventListener('drop', function (evt) {
     evt.preventDefault();
     evt.target.style.backgroundColor = '';
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      return;
+    }
     evt.target.appendChild(draggedItem);
   });
 
