@@ -34,7 +34,7 @@
 
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
-      draggedItem = evt.target;
+      draggedItem = evt.target.cloneNode(true);
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
     artifactsElement.style = 'outline: 2px dashed red';
@@ -48,6 +48,9 @@
   artifactsElement.addEventListener('drop', function (evt) {
     evt.preventDefault();
     evt.target.style.backgroundColor = '';
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      return;
+    }
     evt.target.appendChild(draggedItem);
   });
 
