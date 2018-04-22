@@ -35,9 +35,13 @@
   shopElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggedItem = evt.target.cloneNode(true);
-      evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
     artifactsElement.style = 'outline: 2px dashed red';
+  });
+
+  artifactsElement.addEventListener('dragstart', function (evt) {
+    draggedItem = evt.target;
+    evt.dataTransfer.setData('text/plain', evt.target.alt);
   });
 
   artifactsElement.addEventListener('dragover', function (evt) {
