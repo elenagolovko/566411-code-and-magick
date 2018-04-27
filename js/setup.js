@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var ENTER_KEYCODE = 13;
   // var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -7,7 +8,6 @@
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
   var WIZARDS_LIST_SIZE = 4;
-  var wizards = [];
 
   var userDialog = document.querySelector('.setup');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
@@ -106,7 +106,7 @@
     var form = userDialog.querySelector('.setup-wizard-form');
     form.addEventListener('submit', function (evt) {
       evt.preventDefault();
-      window.backend.save(new FormData(form), function (response) {
+      window.backend.save(new FormData(form), function () {
         userDialog.classList.add('hidden');
       });
     });
@@ -115,7 +115,7 @@
   var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < WIZARDS_LIST_SIZE; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);

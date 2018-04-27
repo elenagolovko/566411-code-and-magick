@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
   var saveFormData = function (data, onSuccess, onError) {
     var URL = 'https://js.dump.academy/code-and-magick';
