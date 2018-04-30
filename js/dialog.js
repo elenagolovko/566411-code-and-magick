@@ -51,7 +51,7 @@
 
   dialogHandle.setAttribute('style', 'z-index: 1');
   dialogHandle.addEventListener('mousedown', function (evt) {
-    // evt.preventDefault();
+    evt.preventDefault();
 
     var startCoords = {
       x: evt.clientX,
