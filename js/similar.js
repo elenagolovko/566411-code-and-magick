@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
+  var DEBOUNCE_INTERVAL = 300;
   var wizards = [];
   var coatColor;
   var eyesColor;
   var fireballColor;
   var userDialog = document.querySelector('.setup');
-  var DEBOUNCE_INTERVAL = 300;
   var lastTimeout;
 
   var getRank = function (wizard) {
@@ -38,7 +38,7 @@
   var updateWizards = function () {
     window.render(wizards.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
-      if (rankDiff === 0) {
+      if (!rankDiff) {
         rankDiff = namesComparator(left.name, right.name);
       }
       return rankDiff;
